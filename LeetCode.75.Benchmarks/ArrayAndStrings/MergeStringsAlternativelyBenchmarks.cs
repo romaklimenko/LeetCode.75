@@ -25,7 +25,7 @@ public class MergeStringsAlternativelyBenchmarks
     {
         MergeStringsAlternatively.WithStringBuilderAndIterators(Word1, Word2);
     }
-    
+
     [Benchmark]
     public void MergeStringsAlternately_WithStringBuilderAndLoops()
     {

@@ -30,7 +30,7 @@ public static class MergeStringsAlternatively
     public static string WithStringBuilderAndIterators(string word1, string word2)
     {
         var length = word1.Length + word2.Length;
-        var stringBuilder = new StringBuilder(capacity: length);
+        var stringBuilder = new StringBuilder(length);
 
         using var enumerator1 = word1.GetEnumerator();
         using var enumerator2 = word2.GetEnumerator();

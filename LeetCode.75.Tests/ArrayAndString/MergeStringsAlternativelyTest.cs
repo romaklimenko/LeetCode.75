@@ -27,7 +27,7 @@ public class MergeStringsAlternativelyTest
 
     [Theory]
     [MemberData(nameof(TestData))]
-    public void MergeAlternately_StateUnderTest_ExpectedBehavior(
+    public void MergeAlternatelyStringsAlternatively_ExpectedBehavior(
         Func<string, string, string> merge, string word1, string word2, string expected)
     {
         // Act

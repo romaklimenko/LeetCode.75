@@ -4,3 +4,4 @@ using BenchmarkDotNet.Running;
 using LeetCode._75.Benchmarks.ArrayAndStrings;
 
 BenchmarkRunner.Run<MergeStringsAlternativelyBenchmarks>();
+BenchmarkRunner.Run<GreatestCommonDivisorOfStringsBenchmarks>();
