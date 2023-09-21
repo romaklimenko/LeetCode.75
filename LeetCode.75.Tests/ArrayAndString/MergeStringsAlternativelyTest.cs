@@ -9,7 +9,7 @@ public class MergeStringsAlternativelyTest
         get
         {
             // ReSharper disable once LoopCanBeConvertedToQuery
-            foreach (var merge in new[]
+            foreach (var func in new[]
                      {
                          MergeStringsAlternatively.WithStringBuilderAndLoops,
                          MergeStringsAlternatively.WithStringBuilderAndIterators,
@@ -21,19 +21,29 @@ public class MergeStringsAlternativelyTest
                          ("ab", "pqrs", "apbqrs"),
                          ("abcd", "pq", "apbqcd")
                      })
-                yield return new object[] { merge, data.word1, data.word2, data.expected };
+                yield return new object[]
+                {
+                    new TestDataRecord(func, data.word1, data.word2, data.expected)
+                };
         }
     }
 
     [Theory]
     [MemberData(nameof(TestData))]
-    public void MergeAlternatelyStringsAlternatively_ExpectedBehavior(
-        Func<string, string, string> merge, string word1, string word2, string expected)
+    public void Test(TestDataRecord input)
     {
         // Act
-        var result = merge(word1, word2);
+        var result = input.Fn(input.Word1, input.Word2);
 
         // Assert
-        Assert.Equal(expected, result);
+        Assert.Equal(input.Expected, result);
+    }
+
+    public record TestDataRecord(Func<string, string, string> Fn, string Word1, string Word2, string Expected)
+    {
+        public override string ToString()
+        {
+            return $"func: \"{Fn.Method.Name}\", word1: \"{Word1}\", word2: \"{Word2}\", expected: \"{Expected}\"";
+        }
     }
 }
